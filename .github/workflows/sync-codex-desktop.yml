@@ -57,28 +57,28 @@ jobs:
           python3 scripts/sync-codex-desktop.py | tee "$RESULT_FILE"
 
           SYNC_STATUS=$(python3 - "$RESULT_FILE" <<'PY'
-import json
-import pathlib
-import sys
+          import json
+          import pathlib
+          import sys
 
-data = json.loads(pathlib.Path(sys.argv[1]).read_text())
-print(data.get("status", ""))
-PY
-)
+          data = json.loads(pathlib.Path(sys.argv[1]).read_text())
+          print(data.get("status", ""))
+          PY
+            )
           echo "status=$SYNC_STATUS" >> "$GITHUB_OUTPUT"
 
           python3 - "$RESULT_FILE" "$CHANGED_ASSETS_FILE" <<'PY'
-import json
-import pathlib
-import sys
+          import json
+          import pathlib
+          import sys
 
-result_file, out_file = sys.argv[1], sys.argv[2]
-data = json.loads(pathlib.Path(result_file).read_text())
-with pathlib.Path(out_file).open("w", encoding="utf-8") as fp:
-    for item in data.get("results", []):
-        if item.get("status") == "synced":
-            fp.write(f"{item['path']}\n")
-PY
+          result_file, out_file = sys.argv[1], sys.argv[2]
+          data = json.loads(pathlib.Path(result_file).read_text())
+          with pathlib.Path(out_file).open("w", encoding="utf-8") as fp:
+              for item in data.get("results", []):
+                  if item.get("status") == "synced":
+                      fp.write(f"{item['path']}\n")
+          PY
 
           ASSET_COUNT=$(wc -l < "$CHANGED_ASSETS_FILE" | tr -d " ")
           echo "asset_count=$ASSET_COUNT" >> "$GITHUB_OUTPUT"
