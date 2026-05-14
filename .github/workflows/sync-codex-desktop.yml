@@ -39,7 +39,7 @@ jobs:
                 "url": "https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi",
                 "output_name": "Codex Installer.exe"
               }
-          }
+            }
           DOWNLOAD_ROOT: downloads
           STATE_PATH: downloads/codex-desktop-sync-state.json
         run: python3 scripts/sync-codex-desktop.py
