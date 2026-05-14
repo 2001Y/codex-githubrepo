@@ -1,0 +1,39 @@
+{
+  "updated_at": "2026-05-14T06:45:06.282893+00:00",
+  "mode": "fixed_urls",
+  "entries": {
+    "macos-arm64": {
+      "key": "macos-arm64",
+      "url": "https://persistent.oaistatic.com/codex-app-prod/Codex.dmg",
+      "fingerprint": "url=https://persistent.oaistatic.com/codex-app-prod/Codex.dmg|etag=0x8DEAD55DA5E79A2|last_modified=Fri, 08 May 2026 23:02:18 GMT|size=322383335",
+      "download_path": "downloads/macos-arm64/Codex.dmg",
+      "content_type": "application/x-apple-diskimage",
+      "asset_size": 322383335,
+      "etag": "0x8DEAD55DA5E79A2",
+      "last_modified": "Fri, 08 May 2026 23:02:18 GMT",
+      "sha256": "e05ae853e5035c949b07915f8c68621b25eb43f47e5185ee6983e847ba176f27"
+    },
+    "macos-x64": {
+      "key": "macos-x64",
+      "url": "https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg",
+      "fingerprint": "url=https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg|etag=0x8DEAD562E267FA1|last_modified=Fri, 08 May 2026 23:04:38 GMT|size=327333970",
+      "download_path": "downloads/macos-x64/Codex-latest-x64.dmg",
+      "content_type": "application/x-apple-diskimage",
+      "asset_size": 327333970,
+      "etag": "0x8DEAD562E267FA1",
+      "last_modified": "Fri, 08 May 2026 23:04:38 GMT",
+      "sha256": "d6dd60e08bfaa8624ec5da7737ed2a938f92c2e44d72dcd858a0bb9c8346e92a"
+    },
+    "windows": {
+      "key": "windows",
+      "url": "https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi",
+      "fingerprint": "url=https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi|etag=None|last_modified=None|size=1294880",
+      "download_path": "downloads/windows/Codex Installer.exe",
+      "content_type": "application/octet-stream",
+      "asset_size": 1294880,
+      "etag": null,
+      "last_modified": null,
+      "sha256": "df84077bf80099ed60fb94f1a6a91020299cc75ff6d4aa2d8ae1ac2165cbc621"
+    }
+  }
+}
