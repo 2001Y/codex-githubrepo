@@ -17,6 +17,8 @@
 
 1. URLを変更する場合: `.github/workflows/sync-codex-desktop.yml` の `SOURCE_FILE_URLS` を更新
 2. 手動実行: GitHub Actions の `workflow_dispatch`
+   - 通常: 変更の差分のみ実行
+   - 強制更新: `force=true` を指定して再実行（現行差分ロジックを無視して再ダウンロード・再アップロード）
 3. 定期実行: `0 * * * *`（UTC）
 
 ## `SOURCE_FILE_URLS` 例
