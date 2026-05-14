@@ -1,0 +1,62 @@
+name: Sync Codex Desktop asset
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download latest Codex Desktop asset
+        env:
+          # OS別URL。固定URLのみ利用。サイトHTMLやAPIは使わない
+          SOURCE_FILE_URLS: |
+            {
+              "macos-arm64": {
+                "url": "https://persistent.oaistatic.com/codex-app-prod/Codex.dmg",
+                "output_name": "Codex.dmg"
+              },
+              "macos-x64": {
+                "url": "https://persistent.oaistatic.com/codex-app-prod/Codex-latest-x64.dmg",
+                "output_name": "Codex-latest-x64.dmg"
+              },
+              "windows": {
+                "url": "https://get.microsoft.com/installer/download/9PLM9XGG6VKS?cid=website_cta_psi",
+                "output_name": "Codex Installer.exe"
+              }
+          }
+          DOWNLOAD_ROOT: downloads
+          STATE_PATH: downloads/codex-desktop-sync-state.json
+        run: python3 scripts/sync-codex-desktop.py
+
+      - name: Commit and push if changed
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions@users.noreply.github.com
+        run: |
+          git config user.name "$GIT_AUTHOR_NAME"
+          git config user.email "$GIT_AUTHOR_EMAIL"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "chore: sync latest Codex Desktop asset"
+          git push
